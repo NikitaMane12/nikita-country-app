@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="form">
+      <input id="email" type="text" placeholder="email" />
+      <input id="name" type="text" placeholder="email" />
+      <input id="password" type="text" placeholder="email" />
+      <input type="submit" />
+    </form>
+  </body>
+</html>
+<script>
+  let BaseUrl = "http://localhost:8080/";
+  let emailEl = document.getElementById("email");
+  let nameEl = document.getElementById("name");
+  let passwordEl = document.getElementById("password");
+  let formEl = getElementById("form");
+  formEl.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let obj = {
+      name: nameEl.value,
+      email: emailEl.value,
+      password: passwordEl.value,
+    };
+    fetch(`${BaseUrl}/signUp`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(obj),
+    })
+      .then((res) => {
+        res.json();
+      })
+      .then((data) => {
+        console.log(data);
+      });
+  });
+</script>
